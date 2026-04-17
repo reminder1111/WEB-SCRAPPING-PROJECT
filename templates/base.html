@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}Review Studio{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <div class="page-backdrop">
+        <div class="backdrop-orb orb-one"></div>
+        <div class="backdrop-orb orb-two"></div>
+        <div class="backdrop-grid"></div>
+    </div>
+
+    <div class="page-shell">
+        <header class="topbar">
+            <a class="brandmark" href="{{ url_for('homepage') }}">
+                <span class="brandmark-badge">NN</span>
+                <span class="brandmark-copy">
+                    <strong>Review Studio</strong>
+                    <span>smart product review search</span>
+                </span>
+            </a>
+            <div class="topbar-pill">Built by Neha Nishad</div>
+        </header>
+
+        <main class="page-content">
+            {% block body %}{% endblock %}
+        </main>
+    </div>
+
+    <div class="project-watermark">Built by Neha Nishad</div>
+</body>
+</html>
