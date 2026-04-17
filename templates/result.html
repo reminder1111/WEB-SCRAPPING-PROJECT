@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% block title %}Review Studio | Results{% endblock %}
+
+{% block body %}
+<section class="results-hero">
+    <div class="results-copy">
+        <span class="eyebrow">Search Results</span>
+        <h1>Reviews{% if search_term %} for "{{ search_term }}"{% endif %}</h1>
+        <p>Scan the strongest review highlights, ratings, and export-friendly rows from one premium view.</p>
+    </div>
+
+    <div class="results-actions">
+        <a class="secondary-button" href="{{ url_for('homepage') }}">New Search</a>
+    </div>
+</section>
+
+<section class="summary-strip">
+    <article class="metric-card">
+        <span class="metric-label">Query</span>
+        <strong>{{ search_term or 'No search term' }}</strong>
+    </article>
+    <article class="metric-card">
+        <span class="metric-label">Review Rows</span>
+        <strong>{{ reviews|length }}</strong>
+    </article>
+    <article class="metric-card">
+        <span class="metric-label">Status</span>
+        <strong>{% if error %}Needs attention{% elif reviews %}Ready{% else %}Empty{% endif %}</strong>
+    </article>
+</section>
+
+{% if error %}
+<div class="feedback-banner error-banner">{{ error }}</div>
+{% endif %}
+
+{% if reviews %}
+<section class="results-table-card">
+    <div class="table-header">
+        <div>
+            <span class="table-kicker">Review Collection</span>
+            <h2>Structured review table</h2>
+        </div>
+        <p class="table-copy">Clean enough to demo, inspect, and export.</p>
+    </div>
+
+    <div class="table-scroll">
+        <table class="review-table">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Name</th>
+                    <th>Rating</th>
+                    <th>Comment Heading</th>
+                    <th>Comment</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for review in reviews %}
+                <tr>
+                    <td>{{ review['Product'] }}</td>
+                    <td>{{ review['Name'] }}</td>
+                    <td><span class="rating-pill">{{ review['Rating'] }}</span></td>
+                    <td>{{ review['CommentHead'] }}</td>
+                    <td>{{ review['Comment'] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="review-card-grid">
+    {% for review in reviews %}
+    <article class="review-card">
+        <div class="review-card-top">
+            <span class="review-product">{{ review['Product'] }}</span>
+            <span class="rating-pill">{{ review['Rating'] }}</span>
+        </div>
+        <h3>{{ review['CommentHead'] }}</h3>
+        <p>{{ review['Comment'] }}</p>
+        <div class="review-author">{{ review['Name'] }}</div>
+    </article>
+    {% endfor %}
+</section>
+{% else %}
+<section class="empty-state">
+    <div class="empty-state-badge">No reviews yet</div>
+    <h2>Try a broader search term.</h2>
+    <p>Use keywords like <strong>iphone 12</strong>, <strong>laptop</strong>, <strong>perfume</strong>, or <strong>chair</strong>.</p>
+    <a class="primary-button inline-button" href="{{ url_for('homepage') }}">Back to Search</a>
+</section>
+{% endif %}
+{% endblock %}
