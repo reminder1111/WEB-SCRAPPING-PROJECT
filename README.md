@@ -1,19 +1,21 @@
 # WEB-SCRAPPING-PROJECT
 
-A Flask-based product review search app with a polished premium UI. The app lets you enter a product keyword, fetch matching product review data from a live API, display the results in a styled dashboard, and export each search result as a CSV file.
+A Flask-based product review search application with a premium UI and live Flipkart data scraping. The app opens Flipkart search pages through Selenium, reads the live review pages in a real browser session, and displays the extracted product reviews in a polished dashboard. Each successful search is also exported as a CSV file.
 
 ## Features
 
-- Search product reviews by keyword
-- Responsive premium UI for search and result screens
-- CSV export for every successful search
-- Clean empty-state and error handling
+- Live Flipkart product review scraping
+- Premium responsive UI for search and results
+- CSV export for each successful search
+- Error and empty-state handling
 - Watermark branding: `Built by Neha Nishad`
 
 ## Tech Stack
 
 - Python
 - Flask
+- Selenium
+- WebDriver Manager
 - Requests
 - HTML / CSS
 
@@ -36,17 +38,24 @@ WEB-SCRAPPING-PROJECT/
 
 ## How It Works
 
-1. Open the home page.
-2. Enter a product keyword such as `iphone 12`, `laptop`, `perfume`, or `chair`.
-3. The Flask backend sends the search to a product API.
-4. Matching review data is rendered in the results dashboard.
-5. A CSV file is generated for the current search in the project folder.
+1. Open the app home page.
+2. Enter a product keyword such as `iphone 12`.
+3. The backend launches a headless Chrome session with Selenium.
+4. The app opens Flipkart search results, finds the first product, then opens its live review page.
+5. Review rows are parsed and rendered in the results dashboard.
+6. The same data is saved as a CSV file in the project folder.
 
 ## Installation
 
 ```bash
 pip install -r requirements.txt
 ```
+
+## Requirements
+
+- Python 3.10+
+- Google Chrome installed on the system
+- Internet connection for Flipkart page access
 
 ## Run Locally
 
@@ -63,15 +72,15 @@ http://127.0.0.1:5000/
 ## Example Search Keywords
 
 - iphone 12
-- laptop
-- perfume
-- chair
-- smartphone
+- samsung mobile
+- oneplus
+- realme phone
 
 ## Notes
 
 - Generated CSV files and logs are not intended to be committed.
-- The current implementation uses a live product API instead of scraping protected e-commerce pages directly.
+- Flipkart uses dynamic pages and anti-bot protection, so the project uses Selenium instead of plain `requests`.
+- First-time searches may take a few extra seconds while the browser session loads.
 
 ## Author
 
