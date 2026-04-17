@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}Review Studio | Search{% endblock %}
+
+{% block body %}
+<section class="hero-panel">
+    <div class="hero-copy">
+        <span class="eyebrow">Premium Review Dashboard</span>
+        <h1>Find product reviews with a cleaner, faster workflow.</h1>
+        <p>
+            Search live product data, skim ratings instantly, and export each result set as CSV without
+            bouncing between messy pages.
+        </p>
+
+        <div class="hero-chips">
+            <span>iphone 12</span>
+            <span>laptop</span>
+            <span>perfume</span>
+            <span>chair</span>
+        </div>
+    </div>
+
+    <div class="search-card">
+        <div class="card-kicker">Review Search</div>
+        <h2>Start with a product name</h2>
+        <p class="card-copy">Type a clean keyword and we will pull matching reviews into a polished results view.</p>
+
+        <form action="/review" method="POST" class="search-form">
+            <label class="field-label" for="content">Product keyword</label>
+            <div class="input-wrap">
+                <input type="text" name="content" id="content" placeholder="Try iphone 12" autocomplete="off">
+            </div>
+            <button type="submit" class="primary-button">Search Reviews</button>
+        </form>
+    </div>
+</section>
+
+<section class="insight-strip">
+    <article class="insight-card">
+        <span class="insight-label">Fast flow</span>
+        <strong>Search to result in one step</strong>
+        <p>Use the input once and jump straight into a styled review table.</p>
+    </article>
+    <article class="insight-card">
+        <span class="insight-label">CSV ready</span>
+        <strong>Every search writes an export</strong>
+        <p>Your generated CSV lands beside the project so it is easy to present.</p>
+    </article>
+    <article class="insight-card">
+        <span class="insight-label">Made to demo</span>
+        <strong>Looks sharp on desktop and mobile</strong>
+        <p>The layout stays clean even when you are presenting in class or interviews.</p>
+    </article>
+</section>
+{% endblock %}
